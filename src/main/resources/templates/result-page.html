@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/result-page.css}">
+    <title>Result Page</title>
+</head>
+<body>
+<!-- NavBar -->
+<div th:replace="~{fragments/navbar.html :: navbar}"></div>
+
+<div class="container main-container">
+    <div class="card result-card">
+        <div class="result-top">
+            <div>
+                <p class="title">Quiz Result</p>
+                <p class="subtitle">Great job! Review your final score below.</p>
+            </div>
+            <div class="score-badge" th:text="${result.totalCorrect}"></div>
+        </div>
+
+        <div class="info-section">
+            <div class="info">
+                <span>Participant:</span>
+                <strong th:if="${result}" th:text="${result.username}"></strong>
+            </div>
+
+            <div class="info">
+                <span>Correct Answers:</span>
+                <strong th:if="${result}" th:text="${result.totalCorrect}"></strong>
+            </div>
+
+            <div class="info">
+                <span>Wrong Answers:</span>
+                <strong th:if="${result}" th:text="10 - ${result.totalCorrect}"></strong>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button type="button" th:onclick="|window.location.href='/scoreboard'|">View Scoreboard</button>
+            <button type="button" th:onclick="|window.location.href='/'|">Back to Homepage</button>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer.html :: footer}"></div>
+</body>
+</html>

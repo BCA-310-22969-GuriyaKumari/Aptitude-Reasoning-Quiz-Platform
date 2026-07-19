@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/home-page.css}">
+    <title>Home Page</title>
+</head>
+<body>
+<!-- Navbar -->
+<div th:replace="~{fragments/navbar.html :: navbar}"></div>
+
+<div class="container main-container">
+    <div class="image-container">
+        <img th:src="@{/images/projectImg.jpeg}" alt="Quiz illustration">
+    </div>
+
+    <div class="form-container">
+        <h1>Welcome Candidate !</h1>
+
+        <form th:action="@{/select-subject}" method="post">
+            <label for="username">Enter Your Name</label>
+            <input type="text" name="username" required
+       pattern="^[A-Za-z][A-Za-z\s]*$"
+       oninvalid="if(this.validity.valueMissing){this.setCustomValidity('This is a required field')} else if(this.validity.patternMismatch){this.setCustomValidity('Must start with alphabets!')}"
+       oninput="this.setCustomValidity('')"
+       placeholder="Enter Your Name">
+            <button type="submit"> Select Subject</button>
+        </form>
+    </div>
+</div>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer.html :: footer}"></div>
+</body>
+</html>

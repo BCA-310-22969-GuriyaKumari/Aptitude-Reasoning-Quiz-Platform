@@ -1,0 +1,145 @@
+.admin-root {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #eef4ff 0%, #ffffff 100%);
+}
+
+.admin-shell {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    min-height: 100vh;
+}
+
+.admin-sidebar {
+    background: #ffffff;
+    border-right: 1px solid rgba(148, 163, 184, 0.16);
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    box-shadow: inset -2px 0 8px rgba(15, 23, 42, 0.03);
+}
+
+.admin-sidebar h3 {
+    font-size: 1.4rem;
+    margin-bottom: 6px;
+    color: #102a43;
+}
+
+.admin-nav {
+    display: grid;
+    gap: 10px;
+}
+
+.admin-nav a {
+    display: block;
+    padding: 14px 18px;
+    border-radius: 18px;
+    color: #102a43;
+    background: rgba(248, 250, 252, 0.98);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.admin-nav a:hover {
+    transform: translateX(1px);
+    background: #eff6ff;
+    border-color: #93c5fd;
+}
+
+.admin-nav a.active {
+    background: #1d4ed8;
+    color: white;
+    border-color: #1d4ed8;
+}
+
+.admin-main {
+    padding: 42px 42px 56px;
+}
+
+.admin-heading h1 {
+    font-size: 2.1rem;
+    margin-bottom: 10px;
+    color: #102a43;
+}
+
+.admin-heading p {
+    color: #64748b;
+    margin: 0;
+}
+
+.analytics-card {
+    background: #ffffff;
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    border-radius: 20px;
+}
+
+.analytics-card h5 {
+    font-size: 1rem;
+    color: #334155;
+    margin-bottom: 1rem;
+}
+
+.analytics-value {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #1d4ed8;
+    margin: 0;
+}
+
+.analytics-table-section {
+    background: #ffffff;
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    border-radius: 24px;
+}
+
+.analytics-table-section h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: #102a43;
+}
+
+.analytics-table-section p {
+    margin-bottom: 0;
+    color: #64748b;
+}
+
+@media (max-width: 992px) {
+    .admin-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-sidebar {
+        padding: 24px 18px;
+    }
+
+    .admin-main {
+        padding: 24px 18px 36px;
+    }
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 28px 60px rgba(15, 23, 42, 0.08);
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+    color: #102a43;
+}
+
+.admin-table th {
+    background: #eff6ff;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.admin-table tbody tr:hover {
+    background: #f8fbff;
+}

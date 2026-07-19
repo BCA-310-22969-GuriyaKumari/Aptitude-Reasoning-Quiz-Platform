@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aptitude & Reasoning Quiz Platform</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <link rel="stylesheet" th:href="@{/css/index.css}">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <i class="fa-solid fa-brain" style="color: #1e3a8a;"></i>
+      <span>Quiz App</span>
+    </div>
+  </nav>
+
+  <main class="main-container">
+    
+    <header class="top-heading-section">
+      <span class="welcome-tag">
+        <i class="fa-solid fa-star" style="margin-right: 4px;"></i> Welcome to our Platform
+      </span>
+      <h1 class="main-heading">
+        Master Your Skills with <span class="gradient-text">Aptitude & Reasoning</span>
+      </h1>
+      <p class="sub-heading">
+        An interactive, smart assessment interface designed to challenge your analytical thinking and track real-time preparation metrics.
+      </p>
+    </header>
+
+    <div class="split-content">
+      
+      <section class="illustration-section">
+        <img th:src="@{/images/projectimg.jpeg}" alt="Students practicing aptitude logic layout">
+      </section>
+
+      <section class="content-section">
+        <div class="role-grid">
+          
+          <div class="role-card">
+            <div>
+              <div class="card-meta">
+                <div class="card-icon student-icon">
+                  <i class="fa-solid fa-user-graduate"></i>
+                </div>
+                <h3 class="role-title">Access as Student</h3>
+              </div>
+              <p class="role-desc" style="margin-top: 0.6rem;">
+                Step into your dashboard to take customized diagnostic quizzes and monitor analytical progress.
+              </p>
+            </div>
+            <a th:href="@{/student-entry}" class="btn btn-primary">
+              Launch Assessment <i class="fa-solid fa-arrow-right icon-right"></i>
+            </a>
+          </div>
+
+          <div class="role-card">
+            <div>
+              <div class="card-meta">
+                <div class="card-icon admin-icon">
+                  <i class="fa-solid fa-user-shield"></i>
+                </div>
+                <h3 class="role-title">Access as Admin</h3>
+              </div>
+              <p class="role-desc" style="margin-top: 0.6rem;">
+                Manage evaluation items, analyze global metrics, and configure test parameter keys easily.
+              </p>
+            </div>
+            <a th:href="@{/admin-login}" class="btn btn-outline">
+              Manage Console <i class="fa-solid fa-arrow-right icon-right"></i>
+            </a>
+          </div>
+
+        </div>
+      </section>
+      
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    &copy; Guriya Kumari
+  </footer>
+
+</body>
+</html>

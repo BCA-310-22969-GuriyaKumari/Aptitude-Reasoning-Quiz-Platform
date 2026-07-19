@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choose Your Challenge - Quiz App</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <link rel="stylesheet" th:href="@{/css/student-entry.css}">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <i class="fa-solid fa-brain" style="color: #1e3a8a;"></i>
+      <span>Quiz App</span>
+    </div>
+    <div class="user-badge" th:if="${studentName != null}">
+      <i class="fa-regular fa-circle-user"></i>
+      <span th:text="${studentName}">Student</span>
+    </div>
+  </nav>
+
+  <main class="challenge-container">
+    
+    <header class="challenge-header">
+      <div class="illustration-badge">
+        <i class="fa-solid fa-graduation-cap"></i>
+      </div>
+      <h1 class="main-title">Choose Your Challenge</h1>
+      <p class="sub-title">Select a subject and start your quiz journey with a strong focus on speed and accuracy.</p>
+    </header>
+
+    <section class="card-wrapper-grid">
+      
+      <div class="challenge-card reasoning-theme">
+        <div class="theme-icon-box">
+          <i class="fa-solid fa-puzzle-piece"></i>
+        </div>
+        <div class="card-body-content">
+          <h2 class="category-title">Reasoning</h2>
+          <p class="category-desc">Test your logical, spatial, and analytical ability with timed situational problems.</p>
+        </div>
+        <a th:href="@{/quiz(category='reasoning')}" class="challenge-btn">
+          Start Reasoning Quiz <i class="fa-solid fa-bolt-lightning btn-icon-next"></i>
+        </a>
+      </div>
+
+      <div class="challenge-card aptitude-theme">
+        <div class="theme-icon-box">
+          <i class="fa-solid fa-calculator"></i>
+        </div>
+        <div class="card-body-content">
+          <h2 class="category-title">Aptitude</h2>
+          <p class="category-desc">Challenge your mathematical skills, quantitative data interpretations, and speed formulas.</p>
+        </div>
+        <a th:href="@{/quiz(category=aptitude)}" class="challenge-btn">
+          Start Aptitude Quiz <i class="fa-solid fa-bolt-lightning btn-icon-next"></i>
+        </a>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    &copy; Guriya Kumari.
+  </footer>
+
+</body>
+</html>

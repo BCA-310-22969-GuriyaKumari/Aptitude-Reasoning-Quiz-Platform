@@ -1,0 +1,9 @@
+server:
+  port: 9093
+
+spring:
+  profiles:
+    active: mysql
+
+i18n:
+  basename: messages

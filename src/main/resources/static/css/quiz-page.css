@@ -1,0 +1,205 @@
+.main-container {
+    /* account for fixed header/footer so content isn't hidden */
+    padding: 104px 20px 96px; /* top = header (64) + 40 spacing, bottom = footer (56) + 40 spacing */
+    min-height: calc(100vh - 160px);
+}
+
+/* Fixed header / navbar for quiz page */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.95), rgba(249,250,252,0.95));
+    backdrop-filter: blur(6px);
+    box-shadow: 0 6px 18px rgba(16,42,67,0.06);
+    z-index: 1200;
+    overflow: hidden;
+}
+
+nav .app-name a {
+    font-weight: 800;
+    color: #0f172a;
+    text-decoration: none;
+}
+
+nav .menu a {
+    margin-left: 18px;
+    color: #0f172a;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Fixed footer for quiz page */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border-top: 1px solid rgba(16, 42, 67, 0.06);
+    z-index: 1100;
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.quiz-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #102a43;
+}
+
+.quiz-progress {
+    margin-bottom: 28px;
+    position: sticky;
+    top: 84px;
+    z-index: 30;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(10px);
+    padding: 14px 18px;
+    border-radius: 20px;
+    border: 1px solid rgba(37, 99, 235, 0.12);
+}
+
+.progress-text {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 12px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 18px;
+    border-radius: 999px;
+    background: #e2e8f0;
+    overflow: hidden;
+    border: 1px solid rgba(37, 99, 235, 0.16);
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: width 0.3s ease;
+}
+
+.timer-badge {
+    background: #1d4ed8;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 999px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    box-shadow: 0 20px 40px rgba(29, 78, 216, 0.18);
+}
+
+.question-box {
+    background: white;
+    border-radius: 28px;
+    box-shadow: 0 28px 60px rgba(16, 42, 67, 0.12);
+    padding: 32px;
+    margin-bottom: 28px;
+    border: 1px solid rgba(16, 42, 67, 0.08);
+}
+
+.question-box p {
+    color: #102a43;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 22px;
+    line-height: 1.5;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding: 16px 18px;
+    border-radius: 18px;
+    border: 1px solid rgba(16, 42, 67, 0.08);
+    background: #f8fbff;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.option:hover {
+    background: #eff6ff;
+    transform: translateY(-1px);
+}
+
+.option input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #1d4ed8;
+}
+
+.option label {
+    color: #102a43;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.required-message {
+    color: #b91c1c;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    padding: 10px 14px;
+    border-radius: 12px;
+    margin-top: 14px;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.question-box.required-warning {
+    border-color: #f97316;
+    background: #fff7ed;
+}
+
+button {
+    display: block;
+    margin: 12px auto 0;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #ffffff;
+    padding: 14px 26px;
+    border: none;
+    border-radius: 999px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 18px 30px rgba(37, 99, 235, 0.24);
+}
+
+@media (max-width: 768px) {
+    .question-box {
+        padding: 24px;
+    }
+}
+

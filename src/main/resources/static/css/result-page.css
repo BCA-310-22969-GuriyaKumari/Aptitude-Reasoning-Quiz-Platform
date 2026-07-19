@@ -1,0 +1,117 @@
+.main-container {
+    min-height: calc(100vh - 144px);
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px 104px;
+}
+
+.result-card {
+    width: 100%;
+    max-width: 760px;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 28px;
+    border: 1px solid rgba(16, 42, 67, 0.1);
+    box-shadow: 0 28px 70px rgba(16, 42, 67, 0.12);
+    padding: 34px 30px;
+}
+
+.result-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+}
+
+.title {
+    margin: 0 0 8px 0;
+    font-size: 2rem;
+    color: #102a43;
+    letter-spacing: 0.04em;
+}
+
+.subtitle {
+    margin: 0;
+    color: #475569;
+    font-size: 1rem;
+}
+
+.score-badge {
+    min-width: 110px;
+    min-height: 110px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 800;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(37, 99, 235, 0.24);
+}
+
+.info-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 32px;
+}
+
+.info {
+    background: #f8fbff;
+    padding: 18px 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(16, 42, 67, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.info span {
+    color: #64748b;
+}
+
+.info strong {
+    color: #102a43;
+    font-size: 1.05rem;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.button-group button {
+    width: 220px;
+    padding: 14px 18px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    border: none;
+    border-radius: 999px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button-group button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 18px 30px rgba(37, 99, 235, 0.22);
+}
+
+@media (max-width: 720px) {
+    .result-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .info-section {
+        grid-template-columns: 1fr;
+    }
+
+    .button-group button {
+        width: 100%;
+    }
+}

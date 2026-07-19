@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/quiz-page.css}">
+    <title>Quiz Page</title>
+</head>
+<body>
+<!-- NavBar -->
+<div th:replace="~{fragments/navbar.html :: navbar}"></div>
+
+<div class="container main-container">
+    <div class="quiz-header">
+        <div class="quiz-title">Best of Luck!</div>
+        <div class="timer-badge">Time Left: <span id="timer">05:00</span></div>
+    </div>
+
+    <div class="quiz-progress">
+        <div class="progress-text">Answered <strong id="answeredCount">0</strong> of <strong id="totalCount" th:text="${questionForm.questions.size()}">0</strong> questions</div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill">0%</div>
+        </div>
+    </div>
+
+    <form id="quizForm" th:action="@{/submit}"
+      th:object="${questionForm}"
+      method="post">
+
+        <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+        <div id="incompleteWarning" class="alert alert-warning d-none">
+            Please answer all questions before submitting the quiz. All questions are mandatory.
+        </div>
+
+        <div class="question-box"
+     th:each="question, it : *{questions}">
+            <p th:text="${question.title}"></p>
+
+            <div class="option">
+                <input type="radio"
+                       th:attr="id='optionA-' + ${it.index}"
+                       th:field="*{questions[__${it.index}__].selectedAns}"
+                       th:value="1"/>
+                <label th:for="${'optionA-' + it.index}" th:text="${question.optionA}"></label>
+            </div>
+
+            <div class="option">
+                <input type="radio"
+                       th:attr="id='optionB-' + ${it.index}"
+                       th:field="*{questions[__${it.index}__].selectedAns}"
+                       th:value="2"/>
+                <label th:for="${'optionB-' + it.index}" th:text="${question.optionB}"></label>
+            </div>
+
+            <div class="option">
+                <input type="radio"
+                       th:attr="id='optionC-' + ${it.index}"
+                       th:field="*{questions[__${it.index}__].selectedAns}"
+                       th:value="3"/>
+                <label th:for="${'optionC-' + it.index}" th:text="${question.optionC}"></label>
+            </div>
+
+            <input type="hidden" th:field="*{questions[__${it.index}__].quesId}" th:value="${question.quesId}"/>
+            <input type="hidden" th:field="*{questions[__${it.index}__].correctAns}" th:value="${question.correctAns}"/>
+            <div class="required-message d-none">This is a required field. Please answer this question.</div>
+        </div>
+
+        <input type="hidden" th:name="username" th:value="${username}">
+        <input type="hidden" th:name="category" th:value="${category}">
+
+        <button id="submitBtn" type="submit">Submit Answer</button>
+    </form>
+</div>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer.html :: footer}"></div>
+</body>
+
+<script>
+    // Timer set karein (Minutes:Seconds)
+    let timeLimit = 5 * 60; // 5 minute ke liye
+    const timerDisplay = document.getElementById('timer');
+
+    const countdown = setInterval(function() {
+        let minutes = Math.floor(timeLimit / 60);
+        let seconds = timeLimit % 60;
+
+        // Display format: 05:01
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+
+        timerDisplay.innerHTML = minutes + ":" + seconds;
+
+        if (timeLimit <= 0) {
+            clearInterval(countdown);
+            alert("Time's up! Your quiz will be submitted automatically.");
+            document.getElementById('quizForm').submit(); // Form ID check kar lena
+        }
+        timeLimit--;
+    }, 1000);
+
+    function getAnsweredQuestionIndexes() {
+        const radios = document.querySelectorAll('#quizForm input[type="radio"]');
+        const answeredQuestions = new Set();
+
+        radios.forEach(radio => {
+            if (radio.checked) {
+                const match = radio.name.match(/questions\[(\d+)\]/);
+                if (match) {
+                    answeredQuestions.add(match[1]);
+                }
+            }
+        });
+
+        return answeredQuestions;
+    }
+
+    function updateQuizProgress() {
+        const answeredCountElement = document.getElementById('answeredCount');
+        const totalCountElement = document.getElementById('totalCount');
+        const progressFill = document.getElementById('progressFill');
+        const answeredQuestions = getAnsweredQuestionIndexes();
+
+        const answered = answeredQuestions.size;
+        const total = parseInt(totalCountElement.textContent, 10) || 0;
+        const percentage = total > 0 ? Math.round((answered / total) * 100) : 0;
+
+        answeredCountElement.textContent = answered;
+        progressFill.style.width = percentage + '%';
+        progressFill.textContent = percentage + '%';
+    }
+
+    function showUnansweredWarnings() {
+        const answeredQuestions = getAnsweredQuestionIndexes();
+        const questionBoxes = document.querySelectorAll('.question-box');
+
+        questionBoxes.forEach((box, index) => {
+            const warning = box.querySelector('.required-message');
+            if (!answeredQuestions.has(index.toString())) {
+                box.classList.add('required-warning');
+                if (warning) {
+                    warning.style.display = 'block';
+                }
+            } else {
+                box.classList.remove('required-warning');
+                if (warning) {
+                    warning.style.display = 'none';
+                }
+            }
+        });
+    }
+
+    const incompleteWarning = document.getElementById('incompleteWarning');
+
+    // Update warning state when answers change; only show incomplete warning on submit
+    function toggleSubmitButton() {
+        const totalCountElement = document.getElementById('totalCount');
+        const total = parseInt(totalCountElement.textContent, 10) || 0;
+        const answered = getAnsweredQuestionIndexes().size;
+
+        if (answered === total && total > 0) {
+            incompleteWarning.style.display = 'none';
+            showUnansweredWarnings();
+        }
+    }
+
+    // Update progress when a radio changes and clear warnings for newly answered questions
+    document.querySelectorAll('#quizForm input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            updateQuizProgress();
+            toggleSubmitButton();
+        });
+    });
+
+    // Prevent form submission if not all answered (extra safety)
+    document.getElementById('quizForm').addEventListener('submit', function(e) {
+        const total = parseInt(document.getElementById('totalCount').textContent, 10) || 0;
+        const answered = getAnsweredQuestionIndexes().size;
+        if (answered !== total) {
+            e.preventDefault();
+            showUnansweredWarnings();
+            incompleteWarning.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+
+    // Ensure warning state is correct on load
+    toggleSubmitButton();
+
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+            window.location.reload();
+        }
+    });
+</script>
+
+</html>

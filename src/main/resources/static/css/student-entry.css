@@ -1,0 +1,224 @@
+/* --- Student Entry View Dashboard styling System --- */
+:root {
+  --bg-color: #f1f5f9;
+  --panel-bg: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  
+  /* Theme Colors */
+  --reasoning-primary: #ec4899;  /* Beautiful Pink Accent from your screenshot indicator */
+  --aptitude-primary: #3b82f6;   /* Smart Blue Accent */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar configurations */
+.navbar {
+  background-color: var(--panel-bg);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.navbar-brand {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #1e3a8a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-badge {
+  background-color: #f8fafc;
+  padding: 0.5rem 1rem;
+  border-radius: 99px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Master Layout Framework */
+.challenge-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 3rem 1.5rem;
+  width: 100%;
+}
+
+.challenge-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.illustration-badge {
+  width: 56px;
+  height: 56px;
+  background-color: rgba(30, 58, 138, 0.08);
+  color: #1e3a8a;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.main-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 0.5rem;
+}
+
+.sub-title {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  max-width: 600px;
+  margin: auto;
+  line-height: 1.5;
+}
+
+/* Dynamic Side-By-Side Horizontal Flexbox Grid Setup */
+.card-wrapper-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+}
+
+@media(min-width: 640px) {
+  .card-wrapper-grid {
+    flex-direction: row; /* Converts layout straight to clean side-by-side on desktop views */
+  }
+}
+
+/* Base Card structure specifications */
+.challenge-card {
+  background-color: var(--panel-bg);
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  padding: 2.25rem 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+.challenge-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Custom Individual Theming Mechanics */
+.reasoning-theme .theme-icon-box {
+  background-color: rgba(236, 72, 153, 0.1);
+  color: var(--reasoning-primary);
+}
+.reasoning-theme:hover {
+  border-color: var(--reasoning-primary);
+  box-shadow: 0 20px 25px -5px rgba(236, 72, 153, 0.1);
+}
+.reasoning-theme .challenge-btn {
+  background-color: var(--reasoning-primary);
+}
+
+.aptitude-theme .theme-icon-box {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: var(--aptitude-primary);
+}
+.aptitude-theme:hover {
+  border-color: var(--aptitude-primary);
+  box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.1);
+}
+.aptitude-theme .challenge-btn {
+  background-color: var(--aptitude-primary);
+}
+
+/* Inner elements spacing */
+.theme-icon-box {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.category-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.category-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 2rem;
+  min-height: 60px; /* Aligns description boundary spaces */
+}
+
+/* Standard Premium UI Buttons dynamic controls */
+.challenge-btn {
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 14px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: opacity 0.2s ease;
+}
+
+.challenge-btn:hover {
+  opacity: 0.9;
+}
+
+.btn-icon-next {
+  font-size: 0.85rem;
+  transition: transform 0.2s ease;
+}
+
+.challenge-btn:hover .btn-icon-next {
+  transform: scale(1.2);
+}
+
+/* Footer layout rules */
+.footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  border-top: 1px solid #e2e8f0;
+  background-color: var(--panel-bg);
+}
